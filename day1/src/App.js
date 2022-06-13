@@ -1,7 +1,6 @@
 
 import './App.css';
 import Main from './components/Main';
-import Second from './components/Second';
 
 function App() {
   return (
