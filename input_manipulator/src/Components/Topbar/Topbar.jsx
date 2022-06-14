@@ -1,6 +1,6 @@
 import React from 'react'
 import './topbar.css'
-import Navbar from '../Navbar/Navbar'
+import {Link} from 'react-router-dom'
 
 function Topbar() {
   return (
@@ -9,6 +9,14 @@ function Topbar() {
             <h3 className = "logo">Input Manipulator</h3>
         </div>
         <div className='right_side'>
+          <ul>
+          <li className='links'>
+            <Link to ='/' className='nav_bar1'>Personal Information</Link>
+          </li>
+          <li className='links'>
+            <Link to = '/credit' className='nav_bar2'>Credit Card Information</Link>
+            </li>
+          </ul>
         </div>
     </div>
   )

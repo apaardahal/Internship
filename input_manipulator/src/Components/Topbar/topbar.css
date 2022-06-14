@@ -1,0 +1,52 @@
+
+.main_bar{
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo{
+    color: aliceblue;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+
+.right_side ul{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.nav_bar1{
+    color: aliceblue;
+    text-decoration: none;
+    margin-right: 30px;
+}
+
+.nav_bar1:hover{
+    color: aqua;
+}
+
+.nav_bar2:hover{
+    color: aqua;
+}
+
+.nav_bar2{
+    color: aliceblue;
+    text-decoration: none;
+    margin-right: 30px;
+}
+
+.right_side ul li{
+    color: aliceblue;
+}
+
+.links{
+    color: aliceblue;
+    list-style-type: none;
+    justify-content: space-around;
+}
+
+.nav_bar{
+    color: antiquewhite;
+    text-decoration: none;
+}

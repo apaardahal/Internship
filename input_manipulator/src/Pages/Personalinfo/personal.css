@@ -1,12 +1,22 @@
+
 .main_container{
     display: flex;
-    justify-content: center;
     align-items: center;
-    flex-direction: column;
-    background-color: #e7e8ee;
+}
+
+.left_main_container{
+    flex: 60%;
+    background-color: black;
     border: 0;
     border-radius: 15px;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
+    margin: 30px;
+}
+
+.right_main_container{
+    flex: 40%;
+    height: 50%;
+    width: 60%;
 }
 
 .input_items{
@@ -59,4 +69,10 @@ input::-webkit-input-placeholder {
   outline: 0;
   text-align: center;
   width: 50%;
+}
+
+.output{
+    font-size: 12px;
+    color: #eee;
+    text-align: center;
 }
