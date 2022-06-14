@@ -5,14 +5,12 @@ function Creditcard() {
 
     const[cardnumber, setCardnumber] = useState('')
     const[name, setName] = useState('')
-    const[date, setDate] = useState('')
     const[security, setSecurity] = useState('')
     const[result, setResult] = useState(false)
     
     const clearData = () => {
         setCardnumber('')
         setName('')
-        setDate('')
         setSecurity(false)
     }
 
@@ -25,9 +23,6 @@ function Creditcard() {
                 </div>
                 <div className='input_item'>
                     <input type = "text" className='input' value = {name !== '' ? name : ''} placeholder='Name on Card' onChange={(e) => setName(e.target.value)}></input>
-                </div>
-                <div className='input_item'>
-                    <input type = "date" className='input' value = {date !== '' ? date : ''} placeholder='Expiry Date' onChange={(e) => setDate(e.target.value)}></input>
                 </div>
                 <div className='input_item'>
                     <input type = "number" className='input' value = {security !== '' ? security : ''} placeholder='Security Code' onChange={(e) => setSecurity(e.target.value)}></input>
@@ -46,7 +41,6 @@ function Creditcard() {
             <div className='output'>
                 <h1 className='output'>Card Number: {cardnumber}</h1>
                 <h1 className='output'>Name on card : {name}</h1>
-                <h1 className='output'>Date: {date}</h1>
                 <h1 className='output'>Security Number: {security}</h1>
             </div>
             :null

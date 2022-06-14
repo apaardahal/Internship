@@ -7,16 +7,12 @@ function Personal() {
     const[lastname, setLastname] = useState('')
     const[age, setAge] = useState('');
     const[displayresult, setDisplayResult] = useState(false)
-
-
-
-
-const clearData = () => {
+    
+    const clearData = () => {
     setFname('')
     setAge('')
     setLastname('')
-     setDisplayResult(false)
- 
+    setDisplayResult(false)
 }
   return (
       <>
