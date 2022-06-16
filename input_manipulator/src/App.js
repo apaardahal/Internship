@@ -7,7 +7,6 @@ import {
 	BrowserRouter as Router,
 	Routes,
 	Route,
-	Link,
   BrowserRouter
 } from 'react-router-dom';
 
@@ -16,11 +15,11 @@ function App() {
   return (
     <>
     <BrowserRouter>
-    <Topbar/>
-      <Routes>
-        <Route exact path='/' element={< Personal />}></Route>
-        <Route exact path='/credit' element={< Creditcard />}></Route>
-      </Routes>
+      <Topbar/>
+        <Routes>
+          <Route exact path='/' element={< Personal />}></Route>
+          <Route exact path='/credit' element={< Creditcard />}></Route>
+        </Routes>
     </BrowserRouter>
     </>
   );

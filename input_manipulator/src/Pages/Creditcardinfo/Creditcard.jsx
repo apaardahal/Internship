@@ -11,7 +11,8 @@ function Creditcard() {
     const clearData = () => {
         setCardnumber('')
         setName('')
-        setSecurity(false)
+        setSecurity('')
+        setResult(false)
     }
 
   return (
@@ -44,11 +45,12 @@ function Creditcard() {
                 <h1 className='output'>Security Number: {security}</h1>
             </div>
             :null
-            }
-            
+            }       
         </div>
     </div>
   )
 }
 
 export default Creditcard
+
+
