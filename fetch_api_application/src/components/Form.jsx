@@ -4,32 +4,34 @@ import {Api} from '../api'
 
 function Form() {
 
-    const [firstName, setFastName] = useState('')
+    const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [age, setAge] = useState('')
 
     const updateData = () => {
         const ob_api = new Api();
         ob_api.save(firstName, lastName, age);
+        alert('Data Saved')
     }
 
     const deleteData = () => {
         const ob_api = new Api()
         ob_api.delete()
+        setFirstName('')
+        setLastName('')
+        setAge('')
     }
 
-    const getData =  () => {
+    const getData =  async () => {
         const ob_api = new Api()
-        const info =   ob_api.get();
-        return info;
+        const info =   await ob_api.get();
+        setFirstName(info.firstName)
+        setLastName(info.lastName)
+        setAge(info.age)
     }
 
     useEffect(() =>{
-        const u_info = getData()
-        setFastName(u_info.firstName)
-        setLastName(u_info.lastName)
-        setAge(u_info.age)
-       // setFastName("Apaar")
+        getData()
     },[])
 
   return (
@@ -37,10 +39,10 @@ function Form() {
         <div className='left_main_container'>
             <div className='input_items'>
                     <div className='input_item'>
-                        <input type = "text" name = "firstname" value={firstName ? firstName : ""} onChange = {(e) => setFastName(e.target.value)} className='input'  placeholder='First Name'></input>
+                        <input type = "text" name = "firstname" value={firstName? firstName : ""} onChange = {(e) => setFirstName(e.target.value)} className='input'  placeholder='First Name'></input>
                     </div>
                     <div className='input_item'>
-                        <input type = "text" name = "lastname" value = {lastName ? lastName : ""} onChange = {(e) => setLastName(e.target.value)} className='input'  placeholder='Last Name'></input>
+                        <input type = "text" name = "lastname" value = {lastName? lastName : ""} onChange = {(e) => setLastName(e.target.value)} className='input'  placeholder='Last Name'></input>
                     </div>
                     <div className='input_item'>
                         <input type = "number" name = "age" value = {age ? age : ""} onChange = {(e) => setAge(e.target.value)} className='input'  placeholder='Age'></input>
