@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 import './form.css'
 import {Api} from '../api'
 
@@ -7,6 +9,7 @@ function Form() {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [age, setAge] = useState('')
+    const [loading, setLoading] = useState(false)
 
     const updateData = () => {
         const ob_api = new Api();
@@ -23,11 +26,17 @@ function Form() {
     }
 
     const getData =  async () => {
-        const ob_api = new Api()
-        const info =   await ob_api.get();
-        setFirstName(info.firstName)
-        setLastName(info.lastName)
-        setAge(info.age)
+        try{
+            const ob_api = new Api()
+            const info =   await ob_api.get();
+            setFirstName(info.firstName)
+            setLastName(info.lastName)
+            setAge(info.age)
+            setLoading(true)
+        }
+        catch(err){
+            console.log(err);
+        }
     }
 
     useEffect(() =>{
@@ -35,7 +44,8 @@ function Form() {
     },[])
 
   return (
-    <div className='main_container'>
+    <>
+    { loading ? <div className='main_container'>
         <div className='left_main_container'>
             <div className='input_items'>
                     <div className='input_item'>
@@ -60,6 +70,11 @@ function Form() {
             <img src='' alt=''/>
         </div> 
     </div>
+    :<Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open>
+        <CircularProgress color="inherit" />
+    </Backdrop>}
+
+</>
   )
 }
 
