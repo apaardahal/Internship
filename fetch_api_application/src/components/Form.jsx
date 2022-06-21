@@ -14,6 +14,7 @@ function Form() {
     const updateData = () => {
         const ob_api = new Api();
         ob_api.save(firstName, lastName, age);
+        setLoading(true)
         alert('Data Saved')
     }
 
@@ -23,6 +24,7 @@ function Form() {
         setFirstName('')
         setLastName('')
         setAge('')
+        setLoading(true)
     }
 
     const getData =  async () => {
@@ -73,7 +75,6 @@ function Form() {
     :<Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open>
         <CircularProgress color="inherit" />
     </Backdrop>}
-
 </>
   )
 }
