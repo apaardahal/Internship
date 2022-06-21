@@ -15,8 +15,9 @@
 
 .right_main_container{
     flex: 40%;
-    height: 50%;
-    width: 60%;
+    height: 100%;
+    width: 50%;
+    background-color: #08d;
 }
 
 .input_items{
@@ -50,6 +51,9 @@ input::-webkit-input-placeholder {
 }
 
 .button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 10px;
     width: 80%;
     height: 50px;

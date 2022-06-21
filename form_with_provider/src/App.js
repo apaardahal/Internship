@@ -1,18 +1,22 @@
 import './App.css';
+import { FormProvider } from './context/FormContext'
 import Topbar from './components/Topbar';
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {Routes, Route} from 'react-router-dom'
 import BasicInfo from './pages/basicInfo/BasicInfo';
 import Creditcard from './pages/creditCardInfo/CreditCard';
 
 function App() {
+
+  console.log('Mounted');
+
   return (
-    <BrowserRouter>
-      <Topbar/>
-        <Routes>
-          <Route exact path='/' element={< BasicInfo/>}></Route>
-          <Route exact path='/credit' element={< Creditcard />}></Route>
-        </Routes>
-    </BrowserRouter>
+    <FormProvider>
+        <Topbar/>
+          <Routes>
+            <Route exact path='/' element={< BasicInfo/>}></Route>
+            <Route exact path='/credit' element={< Creditcard />}></Route>
+          </Routes>
+    </FormProvider>
   );
 }
 

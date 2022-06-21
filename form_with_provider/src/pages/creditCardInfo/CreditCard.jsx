@@ -1,18 +1,24 @@
 import React, { useState } from 'react'
+import FormContext from '../../context/FormContext'
+import { useContext } from 'react'
 import './creditCard.css'
 
 function Creditcard() {
 
+    const [result, setDisplayResult] = useState(false)
+
+    const { displayFormResult} = useContext(FormContext)
+
     const[cardnumber, setCardnumber] = useState('')
     const[name, setName] = useState('')
     const[security, setSecurity] = useState('')
-    const[result, setResult] = useState(false)
+
     
     const clearData = () => {
         setCardnumber('')
         setName('')
         setSecurity('')
-        setResult(false)
+        setDisplayResult(false)
     }
 
   return (
@@ -29,7 +35,7 @@ function Creditcard() {
                     <input type = "number" className='input' value = {security !== '' ? security : ''} placeholder='Security Code' onChange={(e) => setSecurity(e.target.value)}></input>
                 </div>
                 <div className='button'>
-                    <button className='submit' onClick={() => setResult(true)}>Submit</button>
+                    <button className='submit' onClick={displayFormResult}>Submit</button>
                 </div>
                 <div className='button'>
                     <button className='submit' onClick = {clearData}>Clear</button>

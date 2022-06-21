@@ -1,19 +1,26 @@
 import React, { useState } from 'react'
+import FormContext from '../../context/FormContext'
+import { useContext } from 'react'
 import './basicInfo.css'
 
 function BasicInfo() {
 
-    const[fname, setFname] = useState('')
-    const[lastname, setLastname] = useState('')
-    const[age, setAge] = useState('');
-    const[displayresult, setDisplayResult] = useState(false)
-    
+    const [displayresult, setDisplayResult] = useState()
+
+    const { displayFormResult} = useContext(FormContext)
+
+    const[fname, setFname] = useState(''),
+            [lastname, setLastname] = useState(''),
+                [age, setAge] = useState('');
+
     const clearData = () => {
-    setFname('')
-    setAge('')
-    setLastname('')
-    setDisplayResult(false)
-}
+                    setFname('')
+                    setLastname('')
+                    setAge('')
+                    setDisplayResult(false)
+                }
+
+         
   return (
       <>
       <div className='main_container'>
@@ -29,7 +36,7 @@ function BasicInfo() {
                     <input type = "number" className='input' value = {age !== '' ? age : ''} placeholder='Age' onChange={(e) => setAge(e.target.value)}></input>
                 </div>
                 <div className='button'>
-                    <button className='submit' onClick = {() => setDisplayResult(true)}>Submit</button>
+                    <button className='submit' onClick = {displayFormResult }>Submit</button>
                 </div>
                 <div className='button'>
                     <button className='submit' onClick = {clearData}>Clear</button>
