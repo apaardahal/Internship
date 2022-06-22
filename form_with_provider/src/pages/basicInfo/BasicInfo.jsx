@@ -1,7 +1,9 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {  useNavigate } from "react-router-dom"
 import { FormContext } from '../../context/FormContext'
-
+import {Api} from '../../api';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 import './basicInfo.css'
 
 function BasicInfo() {
@@ -11,24 +13,45 @@ function BasicInfo() {
     const[fname, setFname] = useState('')
     const[lastname, setLastname] = useState('')
     const[age, setAge] = useState('');
+    const [loading, setLoading] = useState(false)
 
     const {setUserData} = useContext(FormContext)
-    
-    const clearData = () => {
-    setFname('')
-    setAge('')
-    setLastname('')
-}
 
-const submitData = () => {
-    setUserData(
-        {fname, lastname, age}
-        )
-    navigate('/table')
-} 
+    const saveDataInLocalStorage = () => {
+        const data_obj = new Api();
+        data_obj.save(fname, lastname, age)
+        alert("Data Saved Successfully")
+    }
+    
+    const getData = async () => {
+        try{
+            const ob_api = new Api()
+            const info =   await ob_api.get();
+            setFname(info.firstName)
+            setLastname(info.lastName)
+            setAge(info.age)
+            setLoading(true)
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+
+    const submitData = () => {
+        setUserData(
+            {fname, lastname, age}
+            )
+        saveDataInLocalStorage()
+        navigate('/table')
+    } 
+
+    useEffect(() => {
+        getData();
+    }, [])
+    
   return (
       <>
-      <div className='main_container'>
+      {loading ? <div className='main_container'>
         <div className='left_main_container'>
             <div className='input_items'>
                 <div className='input_item'>
@@ -43,12 +66,13 @@ const submitData = () => {
                 <div className='button'>
                     <button className='submit' onClick = {submitData}>Submit</button>
                 </div>
-                <div className='button'>
-                    <button className='submit' onClick = {clearData}>Clear</button>
-                </div>
             </div>
         </div>
+
     </div>
+    :<Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open>
+        <CircularProgress color="inherit" />
+    </Backdrop>}
 </>
   )
 }
