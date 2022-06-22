@@ -12,7 +12,7 @@ function BasicInfo() {
     const[lastname, setLastname] = useState('')
     const[age, setAge] = useState('');
 
-    const[setUserData] = useContext(FormContext)
+    const {setUserData} = useContext(FormContext)
     
     const clearData = () => {
     setFname('')
@@ -21,7 +21,6 @@ function BasicInfo() {
 }
 
 const submitData = () => {
-    
     setUserData(
         {fname, lastname, age}
         )

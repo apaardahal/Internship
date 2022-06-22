@@ -5,7 +5,7 @@ import './table.css'
 
 function Table() {
 
-const [userData, setUserData] = useContext(FormContext)
+const {userData, setUserData} = useContext(FormContext)
 
   return (
     <div>
@@ -20,9 +20,9 @@ const [userData, setUserData] = useContext(FormContext)
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{userData.fname !== '' ? userData.fname : ''}</td>
-                        <td>{userData.lastname !== '' ? userData.lastname : ''}</td>
-                        <td>{userData.age !== '' ? userData.age : ''}</td>
+                        <td>{userData.fname ? userData.fname : ''}</td>
+                        <td>{userData.lastname  ? userData.lastname : ''}</td>
+                        <td>{userData.age ? userData.age : ''}</td>
                     </tr>
                 </tbody>
             </table>
