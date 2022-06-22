@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {  useNavigate } from "react-router-dom"
+import { FormContext } from '../../context/FormContext'
 
 import './basicInfo.css'
 
@@ -10,18 +11,20 @@ function BasicInfo() {
     const[fname, setFname] = useState('')
     const[lastname, setLastname] = useState('')
     const[age, setAge] = useState('');
-    const[userData, setUserData] = useState('')
-    // const[displayresult, setDisplayResult] = useState(false)
+
+    const[setUserData] = useContext(FormContext)
     
     const clearData = () => {
     setFname('')
     setAge('')
     setLastname('')
-    // setDisplayResult(false)
 }
 
 const submitData = () => {
-    setUserData(fname, lastname, age)
+    
+    setUserData(
+        {fname, lastname, age}
+        )
     navigate('/table')
 } 
   return (

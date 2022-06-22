@@ -4,7 +4,7 @@ import React, { createContext, useState} from "react";
 
  const FormProvider = ( {childern}) => {
 
-    const[userData, setUserData] = useState('')
+    const[userData, setUserData] = useState()
 
      return <FormContext.Provider
         value={{ 

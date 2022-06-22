@@ -9,13 +9,13 @@ function App() {
 
   return (
     <>
-    {/* <FormProvider> */}
+    <FormProvider>
       <Topbar/>
       <Routes>
             <Route exact path='/' element={< BasicInfo/>}></Route>
             <Route exact path = '/table' element = {<Table/>}> </Route>
       </Routes>
-    {/* </FormProvider> */}
+    </FormProvider>
     </>
 
   );
