@@ -1,26 +1,29 @@
 import React, { useState } from 'react'
-import FormContext from '../../context/FormContext'
-import { useContext } from 'react'
+import {  useNavigate } from "react-router-dom"
+
 import './basicInfo.css'
 
 function BasicInfo() {
 
-    const [displayresult, setDisplayResult] = useState()
+    const navigate = useNavigate()
 
-    const { displayFormResult} = useContext(FormContext)
-
-    const[fname, setFname] = useState(''),
-            [lastname, setLastname] = useState(''),
-                [age, setAge] = useState('');
-
+    const[fname, setFname] = useState('')
+    const[lastname, setLastname] = useState('')
+    const[age, setAge] = useState('');
+    const[userData, setUserData] = useState('')
+    // const[displayresult, setDisplayResult] = useState(false)
+    
     const clearData = () => {
-                    setFname('')
-                    setLastname('')
-                    setAge('')
-                    setDisplayResult(false)
-                }
+    setFname('')
+    setAge('')
+    setLastname('')
+    // setDisplayResult(false)
+}
 
-         
+const submitData = () => {
+    setUserData(fname, lastname, age)
+    navigate('/table')
+} 
   return (
       <>
       <div className='main_container'>
@@ -36,19 +39,12 @@ function BasicInfo() {
                     <input type = "number" className='input' value = {age !== '' ? age : ''} placeholder='Age' onChange={(e) => setAge(e.target.value)}></input>
                 </div>
                 <div className='button'>
-                    <button className='submit' onClick = {displayFormResult }>Submit</button>
+                    <button className='submit' onClick = {submitData}>Submit</button>
                 </div>
                 <div className='button'>
                     <button className='submit' onClick = {clearData}>Clear</button>
                 </div>
             </div>
-        </div>
-        <div className='right_main_container'>
-            {
-                displayresult?
-                    <h1 className='output'>Hello my name is {fname} {lastname}. I am {age} years old.</h1>
-                :null
-            }
         </div>
     </div>
 </>

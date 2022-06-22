@@ -14,7 +14,7 @@ function Topbar() {
             <Link to ='/' className='nav_bar1'>Personal Information</Link>
           </li>
           <li className='links'>
-            <Link to = '/credit' className='nav_bar2'>Credit Card Information</Link>
+            <Link to = '/table' className='nav_bar2'>Table</Link>
             </li>
           </ul>
         </div>

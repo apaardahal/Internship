@@ -1,24 +1,18 @@
-import { createContext, useState} from "react";
+import React, { createContext, useState} from "react";
 
- const FormContext = createContext()
+ export const FormContext = createContext('')
 
-export const FormProvider = ( {childern}) => {
+ const FormProvider = ( {childern}) => {
 
-    const [displayResult, setDisplayResult] = useState(false)
-   
-    const displayFormResult = () => {
-        setDisplayResult(true)
-    } 
-
+    const[userData, setUserData] = useState('')
 
      return <FormContext.Provider
         value={{ 
-                 displayResult,
-                 displayFormResult
+                 userData
         }}
      >
          {childern}
      </FormContext.Provider>
 }
 
-export default FormContext
+export  default FormProvider
