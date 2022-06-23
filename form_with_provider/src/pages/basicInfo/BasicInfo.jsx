@@ -23,7 +23,16 @@ function BasicInfo() {
         try{
            const data = await Api.get()
             setFname(data.firstName)
+
+            console.log(fname);
+
             setLastname(data.lastName)
+
+            // To get the previous value(Updated value)
+            // setLastname((previousLname) => {
+            //     console.log(previousLname);
+            // })
+
             setAge(data.age)
             setLoading(true)
         }
@@ -83,4 +92,71 @@ function BasicInfo() {
   )
 }
 
-export default BasicInfo
+// function getNewData () {
+//     return Promise.resolve('Resolve')
+// }
+
+
+
+// function getData ()
+// {
+
+//     let callback = (resolve, reject) => {
+//         resolve('Resolved')
+//     }
+
+//     let value = new  myPromise(callback)
+
+//     return value;
+// }
+
+// // Throws ann error becauses resolve function is not defined. Calling undefined is an error.
+// let a = 3;
+// a.resolve = function (args) {
+//     return args;
+// }
+
+// let b = 'Apaar';
+// b.resolve()
+
+// let c = true;
+// c.resolve()
+
+// let d = {}
+// d.resolve()
+
+// let e = [] 
+// e.myForEach = function(args){
+// }
+
+// e.myForEach((myMap) => {
+//     for(let i = 0; i< e.length; i++){
+//         myMap(i, e[i])
+//     }
+// })
+
+
+
+
+// function data (){
+// }
+// data.resolve()
+
+// function myPromise(callback) {
+//     const resolve = (args) => {
+//         return args;
+//     }
+//     callback(resolve);
+// }
+
+// myPromise.resolve()
+
+// myPromise()
+
+// myPromise.resolve = function (args) {
+//     return args;
+// }
+
+
+
+export default BasicInfo 
