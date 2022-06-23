@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import {  useNavigate } from "react-router-dom"
 import { FormContext } from '../../context/FormContext'
-import {Api} from '../../api';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import './basicInfo.css'
+
+import ApiRequest from '../../api';
+const Api = ApiRequest()
 
 function BasicInfo() {
 
@@ -17,19 +19,12 @@ function BasicInfo() {
 
     const {setUserData} = useContext(FormContext)
 
-    const saveDataInLocalStorage = () => {
-        const data_obj = new Api();
-        data_obj.save(fname, lastname, age)
-        alert("Data Saved Successfully")
-    }
-    
     const getData = async () => {
         try{
-            const ob_api = new Api()
-            const info =   await ob_api.get();
-            setFname(info.firstName)
-            setLastname(info.lastName)
-            setAge(info.age)
+           const data = await Api.get()
+            setFname(data.firstName)
+            setLastname(data.lastName)
+            setAge(data.age)
             setLoading(true)
         }
         catch(err){
@@ -37,18 +32,29 @@ function BasicInfo() {
         }
     }
 
-    const submitData = () => {
+    const submitData = async () => {
         setUserData(
             {fname, lastname, age}
             )
-        saveDataInLocalStorage()
-        navigate('/table')
+            try{
+                const data = await Api.save(fname, lastname, age)
+                if(data === 'success'){
+                    alert('Saved Successfully')
+                    navigate('/table')
+                }else{
+                    alert('Can not saved')
+                }   
+            }
+            catch(err){
+                console.log(err);
+            }     
+
     } 
 
     useEffect(() => {
         getData();
     }, [])
-    
+
   return (
       <>
       {loading ? <div className='main_container'>

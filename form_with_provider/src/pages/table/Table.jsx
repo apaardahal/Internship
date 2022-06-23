@@ -1,20 +1,35 @@
 import { useContext } from 'react'
 import {FormContext} from '../../context/FormContext'
+import {  useNavigate } from "react-router-dom"
 import './table.css'
-import {Api} from '../../api';
+
+import ApiRequest from '../../api';
+const Api = ApiRequest()
 
 function Table() {
 
-const {userData} = useContext(FormContext)
+const navigate = useNavigate()
 
-const deleteData = () => {
-    const api_obj = new Api()
-    api_obj.delete()
-    console.log(userData.setFname)
-    userData.fname = ''
-    userData.lastname = ''
-    userData.age = ''
-    alert("Successfully deleted")
+const {userData, setUserData} = useContext(FormContext)
+
+const deleteData = async () => {
+    try{
+        if(userData.fname !== '' || userData.lastname !== '' || userData.age !== ''){
+            const data = await Api.delete()
+            if(data === 'success'){
+                alert('Deleted Successfully')
+                navigate("/")
+            }else{
+                alert('Falied to delete')
+            }
+        }else{
+            alert('No Data to Delete!!')
+        }
+    }
+    catch(err){
+        console.log(err)
+    }
+  setUserData({fname: '', lastname: '', age: ''})
 }
 
   return (
